@@ -72,7 +72,9 @@ library
 
     -- Other library packages from which modules are imported.
     build-depends:    base ^>=4.17.2.1,
-                        aeson >= 2.0
+                      aeson >= 2.0,
+                      bytestring >= 0.11,
+                      text >= 2.0
 
     -- Directories containing source files.
     hs-source-dirs:   src
@@ -96,6 +98,9 @@ executable ft-turing
     -- Other library packages from which modules are imported.
     build-depends:
         base ^>=4.17.2.1,
+        aeson >= 2.0,
+        bytestring >= 0.11,
+        text >= 2.0,
         ft-turing
 
     -- Directories containing source files.
