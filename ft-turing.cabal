@@ -101,6 +101,7 @@ executable ft-turing
         aeson >= 2.0,
         bytestring >= 0.11,
         text >= 2.0,
+        unordered-containers >= 0.2.20,
         ft-turing
 
     -- Directories containing source files.
