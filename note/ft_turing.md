@@ -1,22 +1,5 @@
-[[0. Intro]]
-[[1. Finite Automata]]
-[[2. Pushdown Automata]]
-[[3. Turing Machine]]
-
-
- The language L(M) contains all input strings accepted by M
-
-### Regular Languages
-A language L is regular if there is a DFA M such that L = L(M)
-All regular languages form a language family
-
-### Nondeterministic Finite Accepter (NFA)
-Definition: M = (Q, $\Sigma$, $\sigma$, $q_0$, F)
- * Q : set of states
- * $\Sigma$ : input alphabet
- * $\sigma$ : transition function
- * $q_0$ : initial state
- * F : set of final states
-DFA = NFA (같은 계산 능력을 가짐)
-
-
+## ft_turing
+* [0. Intro](./0.%20Intro.md)
+* [1. Finite Automata](./1.%20Finite%20Automata.md)
+* [2. Pushdown Automata](./2.%20Pushdown%20Automata.md)
+* [3. Turing Machine](./3.%20Turing%20Machine.md)
