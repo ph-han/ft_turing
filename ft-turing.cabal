@@ -38,7 +38,7 @@ license:            BSD-3-Clause
 license-file:       LICENSE
 
 -- The package author(s).
-author:             phan
+author:             phan,yusekim
 
 -- An email address to which users can send suggestions, bug reports, and patches.
 maintainer:         hanfeelhoo@naver.com
@@ -71,7 +71,8 @@ library
     -- other-extensions:
 
     -- Other library packages from which modules are imported.
-    build-depends:    base ^>=4.17.2.1
+    build-depends:    base ^>=4.17.2.1,
+                        aeson >= 2.0
 
     -- Directories containing source files.
     hs-source-dirs:   src
