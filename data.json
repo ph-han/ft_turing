@@ -1,0 +1,10 @@
+{
+    "name": "Alice",
+    "age": 30,
+    "address": {
+      "street": "123 Haskell St",
+      "city": "Functional City",
+      "zipcode": "12345"
+    }
+  }
+  
