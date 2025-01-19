@@ -1,4 +1,4 @@
-# Revision history for sf-haskell
+# Revision history for ft-turing
 
 ## 0.1.0.0 -- YYYY-mm-dd
 
