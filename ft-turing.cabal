@@ -1,4 +1,4 @@
-cabal-version:      3.0
+cabal-version:      2.4
 -- The cabal-version field refers to the version of the .cabal specification,
 -- and can be different from the cabal-install (the tool) version and the
 -- Cabal (the library) version you are using. As such, the Cabal (the library)
@@ -53,6 +53,7 @@ extra-doc-files:    CHANGELOG.md
 
 -- Extra source files to be distributed with the package, such as examples, or a tutorial module.
 -- extra-source-files:
+-- allow-newer: base
 
 common warnings
     ghc-options: -Wall
@@ -62,7 +63,7 @@ library
     import:           warnings
 
     -- Modules exported by the library.
-    exposed-modules:  MyLib
+    exposed-modules: TuringData
 
     -- Modules included in this library but not exported.
     -- other-modules:
@@ -71,10 +72,12 @@ library
     -- other-extensions:
 
     -- Other library packages from which modules are imported.
-    build-depends:    base ^>=4.17.2.1,
-                      aeson >= 2.0,
-                      bytestring >= 0.11,
-                      text >= 2.0
+    build-depends:    base >= 4.15.0.0 && < 4.18,
+                      aeson,
+                      bytestring,
+                      pretty,
+                      unordered-containers,
+                      text
 
     -- Directories containing source files.
     hs-source-dirs:   src
@@ -90,22 +93,24 @@ executable ft-turing
     main-is:          Main.hs
 
     -- Modules included in this executable, other than Main.
-    -- other-modules:
+    other-modules: TuringData
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
 
     -- Other library packages from which modules are imported.
     build-depends:
-        base ^>=4.17.2.1,
-        aeson >= 2.0,
-        bytestring >= 0.11,
-        text >= 2.0,
-        unordered-containers >= 0.2.20,
+        base >= 4.15.0.0 && < 4.18,
+        aeson,
+        bytestring,
+        text,
+        unordered-containers,
+        pretty,
+        vector,
         ft-turing
 
     -- Directories containing source files.
-    hs-source-dirs:   app
+    hs-source-dirs:   app, src
 
     -- Base language which the package is written in.
     default-language: Haskell2010
@@ -118,7 +123,7 @@ test-suite ft-turing-test
     default-language: Haskell2010
 
     -- Modules included in this executable, other than Main.
-    -- other-modules:
+    -- other-modules: TuringData
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
@@ -134,5 +139,5 @@ test-suite ft-turing-test
 
     -- Test dependencies.
     build-depends:
-        base ^>=4.17.2.1,
+        base >= 4.15.0.0 && < 4.18,
         ft-turing
