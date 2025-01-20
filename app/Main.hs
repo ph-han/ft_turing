@@ -4,6 +4,7 @@ import System.Environment (getArgs)
 import qualified Data.ByteString.Lazy as B
 import Data.Aeson (eitherDecode)
 import TuringData
+import TuringMachine
 
 loadMachineFromFile :: FilePath -> IO (Either String Turing)
 loadMachineFromFile filePath = do
@@ -19,12 +20,6 @@ printHelp =
            "optional arguments:\n" ++
            " -h, --help\t\tshow this help message and exit")
 
--- showCurrState :: String -> IO()
--- showCurrState tape =
-
-runMachine :: Turing -> String -> IO ()
-runMachine turing inputStr =
-  putStrLn inputStr
 
 main :: IO ()
 main = do
@@ -32,12 +27,35 @@ main = do
   case args of
     (cmd:_) | isHelp cmd -> printHelp
     [filePath, inputStr] -> do
-      result <- loadMachineFromFile filePath
+      eitherTuring <- loadMachineFromFile filePath
+      let result = checkInput eitherTuring inputStr
       case result of
-        Left err -> putStrLn $ "[Error]: " ++ err
+        Left err -> putStrLn err
         Right turing -> do
           print turing
-          runMachine turing inputStr
+          print $ buildTape turing inputStr
+          print (nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $nextTape turing $nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
+
     _ -> printHelp
     where
       isHelp cmd = cmd == "-h" || cmd == "--help"
