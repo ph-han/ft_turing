@@ -63,6 +63,7 @@ library
     import:           warnings
 
     -- Modules exported by the library.
+
     exposed-modules: TuringData, TuringMachine
 
     -- Modules included in this library but not exported.

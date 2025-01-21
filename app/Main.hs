@@ -11,6 +11,7 @@ loadMachineFromFile filePath = do
   jsonData <- B.readFile filePath
   return (eitherDecode jsonData)
 
+
 printHelp :: IO ()
 printHelp =
   putStrLn ("usage: ft_turing [-h] jsonfile input\n\n" ++
@@ -19,7 +20,6 @@ printHelp =
            " input\t\t\tinput of the machine\n\n" ++
            "optional arguments:\n" ++
            " -h, --help\t\tshow this help message and exit")
-
 
 main :: IO ()
 main = do

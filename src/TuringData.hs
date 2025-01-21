@@ -2,6 +2,7 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE RecordWildCards #-}
 
+
 module TuringData (Turing(..), TransitionFunc(..), checkInput, charGen, getBlank, isSubsetOf) where  -- ✅ 모듈 선언
 import Data.Aeson (parseJSON, FromJSON, withObject, (.:))
 import GHC.Generics (Generic)
@@ -31,7 +32,6 @@ data Turing = Turing
   , finals      :: [T.Text]
   , transitions :: [(T.Text, [TransitionFunc])]
   } deriving (Generic)
-
 
 machineTitleGen :: (Int -> Char -> String) -> String -> String
 machineTitleGen f title =
