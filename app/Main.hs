@@ -33,7 +33,7 @@ main = do
         Left err -> putStrLn err
         Right turing -> do
           print turing
-          runMachine turing (buildTape turing inputStr)
+          runMachine turing (Left (buildTape turing inputStr))
     _ -> printHelp
     where
       isHelp cmd = cmd == "-h" || cmd == "--help"

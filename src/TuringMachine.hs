@@ -36,18 +36,23 @@ replaceList src val idx
     | length src < idx || idx < 0 = src
     | otherwise = (take idx src) ++ val : (drop (idx + 1) src)
 
-moveTape :: Turing -> Tape -> Tape
+moveTape :: Turing -> Tape -> Either Tape String
 moveTape tur cur =
   let (ns, w, a) = tapeAction cur
       nextTape = replaceList (tape cur) w (tapeHead cur)
-      nextIdx = (\x y -> if x then y + 1 else y - 1) a (tapeHead cur)
-      nextState = (ns, head (drop nextIdx nextTape))
-      nextAction = findAction nextState (transitions tur)
-  in Tape nextTape nextIdx nextState nextAction
+      nextIdx = if a then tapeHead cur + 1 else tapeHead cur - 1
+  in if nextIdx < 0
+       then Right "Error: Tape head moved out of bounds"
+       else let nextState = (ns, head (drop nextIdx nextTape))
+                nextAction = findAction nextState (transitions tur)
+            in Left (Tape nextTape nextIdx nextState nextAction)
 
-runMachine ::Turing -> Tape -> IO ()
-runMachine tu tp = do
-  print tp
-  let (ns, _, _) = tapeAction tp
-  if (isSubsetOf [ns] (map T.unpack (finals tu))) then return ()
-  else runMachine tu (moveTape tu tp)
+
+runMachine ::Turing -> Either Tape String -> IO ()
+runMachine _ (Right errMsg) = putStrLn errMsg
+runMachine tu (Left tp) = do
+    print tp
+    let (ns, _, _) = tapeAction tp
+    if (isSubsetOf [ns] (map T.unpack (finals tu))) then return ()
+    else runMachine tu (moveTape tu tp)
+
