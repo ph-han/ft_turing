@@ -13,6 +13,10 @@ data Tape = Tape
   , tapeAction  :: (String, Char, Bool)
   }
 
+instance Eq Tape where
+  (Tape _ h1 s1 a1) == (Tape _ h2 s2 a2) =
+    h1 == h2 && s1 == s2 && a1 == a2
+
 instance Show Tape where
   show (Tape t idx s ta) =
     let (ns, w, a) = ta
@@ -39,13 +43,17 @@ replaceList src val idx
 moveTape :: Turing -> Tape -> Either Tape String
 moveTape tur cur =
   let (ns, w, a) = tapeAction cur
-      nextTape = replaceList (tape cur) w (tapeHead cur)
-      nextIdx = if a then tapeHead cur + 1 else tapeHead cur - 1
-  in if nextIdx < 0
-       then Right "Error: Tape head moved out of bounds"
-       else let nextState = (ns, head (drop nextIdx nextTape))
-                nextAction = findAction nextState (transitions tur)
-            in Left (Tape nextTape nextIdx nextState nextAction)
+      tHead = if tapeHead cur == 0 && not a then 1 else tapeHead cur
+      nextTape =
+        (if tapeHead cur == 0 && not a then charGen 1 (getBlank tur) else "")
+        ++ replaceList (tape cur) w (tapeHead cur)
+      nextIdx = if a then tHead + 1 else tHead - 1
+      nextState = (ns, head (drop nextIdx nextTape))
+      nextAction = findAction nextState (transitions tur)
+      newTape = Tape nextTape nextIdx nextState nextAction
+  in if newTape == cur
+       then Right "Error: Tape status recursion"
+       else Left newTape
 
 
 runMachine ::Turing -> Either Tape String -> IO ()
@@ -55,4 +63,5 @@ runMachine tu (Left tp) = do
     let (ns, _, _) = tapeAction tp
     if (isSubsetOf [ns] (map T.unpack (finals tu))) then return ()
     else runMachine tu (moveTape tu tp)
+
 
