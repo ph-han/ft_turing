@@ -63,7 +63,8 @@ library
     import:           warnings
 
     -- Modules exported by the library.
-    exposed-modules: TuringData
+
+    exposed-modules: TuringData, TuringMachine
 
     -- Modules included in this library but not exported.
     -- other-modules:
@@ -93,7 +94,7 @@ executable ft-turing
     main-is:          Main.hs
 
     -- Modules included in this executable, other than Main.
-    other-modules: TuringData
+    other-modules: TuringData, TuringMachine
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
@@ -141,4 +142,3 @@ test-suite ft-turing-test
     build-depends:
         base >= 4.15.0.0 && < 4.18,
         ft-turing
-
