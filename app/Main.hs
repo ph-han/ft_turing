@@ -33,29 +33,7 @@ main = do
         Left err -> putStrLn err
         Right turing -> do
           print turing
-          print $ buildTape turing inputStr
-          print (nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $nextTape turing $nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-          print (nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing $ nextTape turing$ nextTape turing $nextTape turing$ nextTape turing $ buildTape turing inputStr)
-
+          runMachine turing (buildTape turing inputStr)
     _ -> printHelp
     where
       isHelp cmd = cmd == "-h" || cmd == "--help"

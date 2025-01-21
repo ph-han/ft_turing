@@ -2,7 +2,7 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE RecordWildCards #-}
 
-module TuringData (Turing(..), TransitionFunc(..), checkInput) where  -- ✅ 모듈 선언
+module TuringData (Turing(..), TransitionFunc(..), checkInput, charGen, getBlank, isSubsetOf) where  -- ✅ 모듈 선언
 import Data.Aeson (parseJSON, FromJSON, withObject, (.:))
 import GHC.Generics (Generic)
 import qualified Data.Text as T
@@ -41,6 +41,9 @@ machineTitleGen f title =
       titlePadding = (width - length title) `div` 2  -- 중앙 정렬을 위한 공백 계산
       titleLine = "*" ++ f (titlePadding - 1) ' ' ++ title ++ f (width - titlePadding - length title - 1) ' ' ++ "*"
   in unlines [border, padding, titleLine, padding, border]  -- 줄바꿈을 포함한 전체 문자열
+
+getBlank :: Turing -> Char
+getBlank turing = head $ T.unpack $ blank turing
 
 charGen :: Int -> Char -> String
 charGen 0 _ = ""
@@ -117,4 +120,4 @@ validateTuring turing s =
 isSubsetOf :: Ord a => [a] -> [a] -> Bool
 isSubsetOf s1 s2 = case s1 of
   [] -> True
-  x:xs -> (\x -> case x of Just _ -> isSubsetOf xs s2; Nothing -> False) (findIndex (==x) s2)
+  x:xs -> (\m -> case m of Just _ -> isSubsetOf xs s2; Nothing -> False) (findIndex (==x) s2)
