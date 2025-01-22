@@ -1,0 +1,21 @@
+{
+  "name" : "0^2n",
+  "alphabet": [ "0", "." ],
+  "blank" : ".",
+  "states" : [ "is_odd", "is_even", "done", "HALT" ],
+  "initial" : "is_even",
+  "finals" : [ "HALT" ],
+  "transitions" : {
+      "is_odd": [
+          { "read" : "0", "to_state": "is_even", "write": "0", "action": "RIGHT"},
+          { "read" : ".", "to_state": "done", "write": "n", "action": "RIGHT"}
+      ],
+      "is_even": [
+          { "read" : "0", "to_state": "is_odd", "write": "0", "action": "RIGHT"},
+          { "read" : ".", "to_state": "done", "write": "y", "action": "RIGHT"}
+      ],
+      "done": [
+          { "read" : ".", "to_state": "HALT", "write": ".", "action": "LEFT"}
+      ]
+  }
+}
