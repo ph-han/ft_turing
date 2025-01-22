@@ -1,6 +1,6 @@
 {
     "name" : "palindrome",
-    "alphabet": [ "a", "b", "A", "B", "n", "y", "⊔"],
+    "alphabet": [ "a", "b", "⊔" ],
     "blank" : "⊔",
     "states" : [ "scanright", "end", "restore", "go_end_a", "go_end_b", "is_match_a", "is_match_b", "go_front", "write_no", "HALT" ],
     "initial" : "scanright",
@@ -47,20 +47,16 @@
 		"write_no" : [
 			{ "read": "⊔", "to_state": "write_no", "write": "n", "action": "LEFT" },
 			{ "read": "b", "to_state": "restore", "write": "b", "action": "LEFT" },
-			{ "read": "a", "to_state": "restore", "write": "a", "action": "LEFT" }
+			{ "read": "a", "to_state": "restore", "write": "a", "action": "LEFT" },
+			{ "read": "A", "to_state": "write_no", "write": "a", "action": "RIGHT" },
+			{ "read": "B", "to_state": "write_no", "write": "b", "action": "RIGHT" }
 		],
 		"restore": [
 			{ "read": "b", "to_state": "restore", "write": "b", "action": "LEFT" },
 			{ "read": "a", "to_state": "restore", "write": "a", "action": "LEFT" },
 			{ "read": "A", "to_state": "restore", "write": "a", "action": "LEFT" },
 			{ "read": "B", "to_state": "restore", "write": "b", "action": "LEFT" },
-			{ "read": "⊔", "to_state": "end", "write": "⊔", "action": "RIGHT" }
-		],
-		"end": [
-			{ "read": "b", "to_state": "end", "write": "b", "action": "RIGHT" },
-			{ "read": "a", "to_state": "end", "write": "a", "action": "RIGHT" },
-			{ "read": "n", "to_state": "HALT", "write": "n", "action": "RIGHT" },
-			{ "read": "y", "to_state": "HALT", "write": "y", "action": "RIGHT" }
+			{ "read": "⊔", "to_state": "HALT", "write": "⊔", "action": "RIGHT" }
 		]
     }
 }

@@ -1,0 +1,61 @@
+{
+  "name" : "tturing",
+  "alphabet": [ "1", ".", "+", "=", ";", "s", "e", "H", "R", "L", "#", ";", "|", "⊔" ],
+  "blank" : "⊔",
+  "states" : [ "alpha", "blank", "states", "init", "finals", "transitions", "input", "ACCEPT", "REJECT" ],
+  "initial" : "readM",
+  "finals" : [ "ACCEPT", "REJECT" ],
+  "transitions" : {
+      "alpha": [
+          { "read" : "1", "to_state": "alpha", "write": "1", "action": "RIGHT"},
+          { "read" : ".", "to_state": "alpha", "write": ".", "action": "RIGHT"},
+          { "read" : "+", "to_state": "alpha", "write": "+", "action": "RIGHT"},
+          { "read" : "=", "to_state": "alpha", "write": "=", "action": "RIGHT"},
+          { "read" : ";", "to_state": "blank" , "write": "!", "action": "RIGHT" },
+          { "read" : "⊔", "to_state": "REJECT" , "write": "⊔", "action": "RIGHT" }
+      ],
+      "blank": [
+          { "read" : ".", "to_state": "checkBlank" , "write": ".", "action": "RIGHT" },
+          { "read" : ";", "to_state": "REJECT" , "write": ";", "action": "RIGHT" },
+          { "read" : "⊔", "to_state": "REJECT" , "write": "⊔", "action": "RIGHT" }
+      ],
+      "checkBlank": [
+        { "read" : "1", "to_state": "REJECT" , "write": "1", "action": "RIGHT" },
+        { "read" : "+", "to_state": "REJECT" , "write": "+", "action": "RIGHT" },
+        { "read" : "=", "to_state": "REJECT" , "write": "=", "action": "RIGHT" },
+        { "read" : ".", "to_state": "checkBlank" , "write": ".", "action": "RIGHT" },
+        { "read" : ";", "to_state": "states" , "write": "@", "action": "RIGHT" }
+      ],
+      "states": [
+          { "read" : "s", "to_state": "states", "write": "s", "action": "RIGHT"},
+          { "read" : "e", "to_state": "states", "write": "e", "action": "RIGHT"},
+          { "read" : "H", "to_state": "states", "write": "H", "action": "RIGHT"},
+          { "read" : ";", "to_state": "init" , "write": "$", "action": "RIGHT" },
+          { "read" : "⊔", "to_state": "REJECT" , "write": "⊔", "action": "RIGHT" }
+      ],
+      "init": [
+        { "read" : "s", "to_state": "checkState", "write": "s", "action": "RIGHT"},
+        { "read" : ";", "to_state": "REJECT" , "write": ";", "action": "RIGHT" }
+      ],
+      "checkState": [
+        { "read" : "1", "to_state": "REJECT" , "write": "1", "action": "RIGHT" },
+        { "read" : "+", "to_state": "REJECT" , "write": "+", "action": "RIGHT" },
+        { "read" : "=", "to_state": "REJECT" , "write": "=", "action": "RIGHT" },
+        { "read" : "R", "to_state": "REJECT" , "write": "R", "action": "RIGHT" },
+        { "read" : "L", "to_state": "REJECT" , "write": "L", "action": "RIGHT" },
+        { "read" : "#", "to_state": "REJECT" , "write": "#", "action": "RIGHT" },
+        { "read" : "|", "to_state": "REJECT" , "write": "|", "action": "RIGHT" },
+        { "read" : ";", "to_state": "finals" , "write": "^", "action": "RIGHT" }
+      ],
+      "finals": [
+
+      ]
+  }
+}
+
+// "1.+=;.;seH;s;H;#s|1s1R#s|+s1R#s|=e+L#e|1e.R#e|+H+R;111+1="
+//  = alphabet
+// ! = blank
+// @ = states
+// $ = init
+// ^ = finals
