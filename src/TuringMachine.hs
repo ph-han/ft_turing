@@ -52,10 +52,9 @@ moveTape tur cur =
       nextState = (ns, head (drop nextIdx nextTape))
       nextAction = findAction nextState (transitions tur)
       newTape = Tape nextTape nextIdx nextState nextAction
-  in if newTape == cur && (nextIdx == 0 || nextIdx == length nextTape - 1)
+  in if newTape == cur && blank tur == (T.pack [snd nextState]) && (nextIdx == 0 || nextIdx == length nextTape - 1)
        then Right "Error: Tape status recursion"
        else Left newTape
-
 
 runMachine ::Turing -> Either Tape String -> IO ()
 runMachine _ (Right errMsg) = putStrLn errMsg
