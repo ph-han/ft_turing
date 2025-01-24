@@ -112,13 +112,13 @@ curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
     <tbody>
         <tr>
             <td align="center" valign="top">
-                <a href="=">
+                <a href="https://github.com/yusekim">
                     <img src="https://avatars.githubusercontent.com/u/127705483?v=4" width="150px;" height="150px;" alt="yusekim"/><br />
                     <sub><b>Kim Yuseung</b></sub>
                 </a>
             </td>
             <td align="center" valign="top">
-                <a href="=">
+                <a href="https://github.com/ph-han">
                     <img src="https://avatars.githubusercontent.com/u/58614643?v=4" width="150px;" height="150px;" alt="phan"/><br />
                     <sub><b>Han Pilho</b></sub>
                 </a>
